@@ -1,0 +1,4 @@
+---
+# tasks file for ansible-certbot
+- fail:
+    msg: This role is not implemented yet!

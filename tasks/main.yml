@@ -2,3 +2,24 @@
 # tasks file for ansible-certbot
 - fail:
     msg: This role is not implemented yet!
+
+- name: "Install necessary packages"
+  pacman:
+    name:
+      - "certbot"
+      - "certbot-dns-cloudflare"
+    state: latest
+
+# Setup cloudflare-secerts
+- name: "Template cloudflare.ini to /root/cloudflare.ini"
+  template:
+    src: "cloudflare.ini.j2"
+    dest: "/root/cloudflare.ini"
+    # mode: '0644'
+
+
+# Initial run
+#certbot certonly --dns-cloudflare --dns-cloudflare-credentials /root/cloudflare.ini -d cloud.pablo.tools --cert-name pablo.tools -n -q
+# Cron renew task
+
+
